@@ -1,0 +1,45 @@
+<!-- 30 second code -->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=auto, initial-scale=1.0">
+    <link rel="stylesheet" href="customcheckbox.css">
+    <title>30 Sec Code</title>
+</head>
+
+<body>
+    <!-- The tick symbol -->
+    <svg class="checkbox-symbol">
+        <symbol id="check">
+            <polyline points="1.5 6 4.5 9 10.5 1" stroke-linecap="round" stroke-linejoin="round" stroke-width="2">
+            </polyline>
+        </symbol>
+    </svg>
+
+    <!-- The rest -->
+    <div class="checkbox-container">
+        <input class="checkbox-input" id="apples" type="checkbox" />
+        <label class="checkbox" for="apples">
+            <span>
+                <svg width="12px" height="10px">
+                    <use xlink:href="#check"></use>
+                </svg>
+            </span>
+            <span>Apples</span>
+        </label>
+        <input class="checkbox-input" id="oranges" type="checkbox" />
+        <label class="checkbox" for="oranges">
+            <span>
+                <svg width="12px" height="10px">
+                    <use xlink:href="#check"></use>
+                </svg>
+            </span>
+            <span>Oranges</span>
+        </label>
+    </div>
+</body>
+
+</html>
