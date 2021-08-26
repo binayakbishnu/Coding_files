@@ -14,8 +14,26 @@ function App() {
 
   // const [todos, setTodos] = useState([{ id: 1, name: 'todo1', complete: false }])
   const [todos, setTodos] = useState([])
-
+  
   const todoNameRef = useRef()
+
+  const LOCAL_STORAGE_KEY = 'todoApp.todos'
+
+  useEffect(() => {
+    //? to load stored todos
+    const storedTodos = JSON.parse(localStorage.getItem(LOCAL_STORAGE_KEY))
+    //?parsing to make it string obj
+    if (storedTodos)
+      setTodos(storedTodos)
+    //^ if statement to prevent loading if empty
+  }, [])  //? ,empty therefore function called once
+  //^ id when storing locally
+  useEffect(() => {
+    localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(todos))
+  },
+    //? the below array list dependencies which if changed will call the function
+    [todos])
+  //^ only stores but does not load
 
   function handleAddTodo(e) {
     const name = todoNameRef.current.value
@@ -31,28 +49,31 @@ function App() {
     todoNameRef.current.value = null  //to clear input after clicking add button
   }
 
-  const LOCAL_STORAGE_KEY = 'todoApp.todos'
-  //^ id when storing locally
-  useEffect(() => {
-    localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(todos))
-  },
-    //? the below array list dependencies which if changed will call the function
-    [todos])
-  //^ only stores but does not load, therefore use...
-  useEffect(() => {
-    const storedTodos = localStorage.getItem(LOCAL_STORAGE_KEY)
-    if (storedTodos) setTodos(storedTodos)
-    //^ if statement to prevent loading if empty
-  }, [])  //? ,empty therefore function called once
+  function toggleTodo(id){
+    //? toggle on/off todos
+    const newTodos = [...todos]
+    //? ^copy made to not change original state varaible
+    //! always do this
+    const todo = newTodos.find(todo =>todo.id === id)
+    todo.complete = !todo.complete
+    setTodos(newTodos)
+  }
 
+  function handleClearTodo(){
+    const newTodos = todos.filter(todo =>!todo.complete)
+    setTodos(newTodos)
+  }
 
   return (
     <>
-      <TodoList todos={todos} />
+      {/* <TodoList todos={todos} /> */}
+      {/* after adding toggleTodo... */}
+      <TodoList todos={todos} toggleTodo={toggleTodo}/>
       <input ref={todoNameRef} type="text"></input>
       <button onClick={handleAddTodo}>Add Todo</button>
-      <button>Clear Completed</button>
-      <div>0 left to do</div>
+      <button onClick={handleClearTodo}>Clear Completed</button>
+      {/* <div>0 left to do</div> */}
+      <div>{todos.filter(todo=>!todo.complete).length} left to do</div>
     </>
   );
 }
