@@ -35,7 +35,7 @@ function App() {
     [todos])
   //^ only stores but does not load
 
-  function handleAddTodo(e) {
+  function handleAddTodo() {
     const name = todoNameRef.current.value
     if (name === '') return
     // console.log(name)
@@ -44,7 +44,7 @@ function App() {
       // return [...prevTodos,{id:1,name:name,complete:false}]
       //^ but the id remains same (ie, 1) therefore download library to generate random ones : uuid library
       return [...prevTodos, { id: uuid(), name: name, complete: false }]
-      //! but todos erased when reloaded: use useEffect to stroe locally
+      //! but todos erased when reloaded: use useEffect to store locally
     })
     todoNameRef.current.value = null  //to clear input after clicking add button
   }
