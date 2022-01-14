@@ -9,7 +9,7 @@ class Employee:
 
     @property
     # ^ therefore method can be accessed as an attribute and not a function
-    # * therfore don't need to change instance codes [emp1.email() not reauired]
+    # * therfore don't need to change instance codes [emp1.email() not required]
     def email(self):
         return self.first.lower() + '.' + self.last.lower() + '@company.com'
 
