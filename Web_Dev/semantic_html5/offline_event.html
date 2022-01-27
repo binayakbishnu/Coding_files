@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Offline</title>
+
+    <style>
+        p{
+            background-color: blue;
+        }
+        .offline {
+            background-color: red;
+        }
+
+        .online {
+            background-color: green;
+        }
+    </style>
+</head>
+
+<body>
+    <div>
+        <p id="changer">Lorem ipsum dolor sit amet consectetur adipisicing elit. Consectetur, inventore quod corporis
+            eaque fugit
+            voluptates hic temporibus maiores velit quibusdam quisquam nulla fugiat, reiciendis ut consequuntur incidunt
+            vel unde tempore.</p>
+        <p>Voluptatem fugit sunt consectetur. Dolorum, optio accusamus libero labore impedit modi odit tenetur nihil at
+            soluta ducimus veniam vero porro adipisci, ipsum voluptatum! Veritatis, itaque distinctio vitae ratione
+            laborum quos!</p>
+    </div>
+
+    <script>
+        window.addEventListener('load', function () {
+            var changer = document.getElementById("changer");
+
+            function updateOnlineStatus(event) {
+                var condition = navigator.onLine ? "online" : "offline";
+                console.log(condition);
+                changer.className = condition;
+            }
+
+            window.addEventListener('online', updateOnlineStatus);
+            window.addEventListener('offline', updateOnlineStatus);
+        });
+    </script>
+</body>
+
+</html>
