@@ -1,0 +1,4 @@
+You must have heard a lot about IoT and IIoT, about how several things are can be interconnected. But what about
+a user interface to control all thse devices? Ever wanted to create an app which can be used to control them?
+TEC brings you a session on AppDev to introduce you to the domain and create an app with which you can interact
+with IoT devices!
