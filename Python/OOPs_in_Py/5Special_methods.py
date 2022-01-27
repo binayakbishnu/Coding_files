@@ -127,3 +127,5 @@ emp1 = Employee('Binayak', 'Bishnu', 30000)
 
 print(len(emp1))
 print(emp1.__len__())
+print(len(emp1))    # as if it were len of list or string
+
