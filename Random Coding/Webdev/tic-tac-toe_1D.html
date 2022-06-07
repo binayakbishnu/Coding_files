@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>1D TIC-TAC-TOE</title>
+
+    <style>
+        @font-face {
+            font-family: press_start_2p;
+            src: url(Press_Start_2P/PressStart2P-Regular.ttf);
+        }
+
+        @font-face {
+            font-family: consolas;
+            src: url(ConsolasFont/Consolas.TTF);
+        }
+
+        /* body {
+            font-family: press_start_2p;
+        } */
+
+        #main {
+            display: flex;
+            flex-direction: row;
+
+            justify-content: space-between;
+            align-items: flex-start;
+        }
+
+        .playing-button {
+            cursor: pointer;
+            color: rgba(0, 0, 0, 0);
+
+            width: 25px;
+        }
+
+        #game_log {
+            visibility: hidden;
+            font-family: consolas;
+
+            width: 60%;
+            text-align: justify;
+        }
+
+        #game_log>ul,
+        #game_log>li {
+            padding: 0%;
+            margin: 0%;
+        }
+
+        #others {
+            position: fixed;
+            bottom: 0%;
+            left: 0%;
+
+            height: 40%;
+            width: 100vw;
+            background-color: grey;
+
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            align-items: flex-start;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="header">
+        <h1>1D Tic-Tac-Toe</h1>
+        <h3>Try 2D Tic-Tac-Toe</h3>
+    </div>
+    <div id="main">
+        <table cellspacing="2" cellpadding="2" width="">
+            <tbody>
+                <tr>
+                    <td>
+                        <input type="button" placeholder="" id="00" class="playing-button" onclick="moveMade(this)"
+                            value="P" />
+                    </td>
+                    <td>
+                        <input type="button" placeholder="" id="01" class="playing-button" onclick="moveMade(this)"
+                            value="P" />
+                    </td>
+                    <td>
+                        <input type="button" placeholder="" id="02" class="playing-button" onclick="moveMade(this)"
+                            value="P" />
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <input type="button" placeholder="" id="10" class="playing-button" onclick="moveMade(this)"
+                            value="P" />
+                    </td>
+                    <td>
+                        <input type="button" placeholder="" id="11" class="playing-button" onclick="moveMade(this)"
+                            value="P" />
+                    </td>
+                    <td>
+                        <input type="button" placeholder="" id="12" class="playing-button" onclick="moveMade(this)"
+                            value="P" />
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <input type="button" placeholder="" id="20" class="playing-button" onclick="moveMade(this)"
+                            value="P" />
+                    </td>
+                    <td>
+                        <input type="button" placeholder="" id="21" class="playing-button" onclick="moveMade(this)"
+                            value="P" />
+                    </td>
+                    <td>
+                        <input type="button" placeholder="" id="22" class="playing-button" onclick="moveMade(this)"
+                            value="P" />
+                    </td>
+                </tr>
+            </tbody>
+            <tfoot>
+                <tr>
+                    <td colspan="2"><input type="button" placeholder="" id="clear_all" class="clear_all"
+                            value="Clear all" onclick="clearAll()" disabled /></td>
+                </tr>
+            </tfoot>
+        </table>
+        <section id="game_log">
+            <ul id="game_log_list"></ul>
+        </section>
+    </div>
+    <div id="others">
+        <ul id="winners_list"></ul>
+        <input type="button" placeholder="" id="clear_all_scores" class="clear_all_scores" value="Clear all"
+            onclick="clearAllScores()" />
+    </div>
+
+    <script>
+        whose_chance = 'X';
+
+        /* 
+        00, 01, 02
+        10, 11, 12
+        20, 21, 22
+        */
+        var grid = new Array(3);
+
+        for (var i = 0; i < grid.length; i++) {
+            grid[i] = new Array(3);
+            for (var j = 0; j < grid[i].length; j++) {
+                grid[i][j] = document.getElementById(`${i}${j}`);
+            }
+        }
+
+        console.log(grid);
+
+        function stopGame() {
+            var playing_btns = document.getElementsByClassName('playing-button');
+            // console.log(playing_btns.length);
+            for (var i = 0; i < playing_btns.length; i++) {
+                playing_btns[i].disabled = true;
+                playing_btns[i].style.cursor = 'auto';
+            }
+        }
+
+        function updateScoreBoard(winner) {
+            var list_item = document.createElement('li');
+            list_item.appendChild(document.createTextNode(`${winner} won`));
+            document.getElementById('winners_list').appendChild(list_item);
+        }
+
+        function confirmWinner(sequence) {
+            if (sequence == "XXX") {
+                console.log("X wins");
+                var list_item = document.createElement('li');
+                list_item.appendChild(document.createTextNode("X wins"));
+                document.getElementById('game_log_list').appendChild(list_item);
+
+                updateScoreBoard("X");
+                stopGame();
+            }
+            else if (sequence == "OOO") {
+                console.log("O wins");
+                var list_item = document.createElement('li');
+                list_item.appendChild(document.createTextNode("O wins"));
+                document.getElementById('game_log_list').appendChild(list_item);
+
+                updateScoreBoard("O");
+                stopGame();
+            }
+        }
+
+        function checkWinner() {
+            // for (var i = 0; i < grid.length; i++) {
+            //     for (var j = 0; j < grid[i].length; j++) {
+            //         console.log(i, j, grid[i][j].value);
+            //     }
+            // }
+
+            /* left diagonal */
+            sequence = "";
+            for (var i = 0; i < grid.length; i++) {
+                for (var j = 0; j < grid[i].length; j++) {
+                    if (i == j) {
+                        sequence += grid[i][j].value;
+                    }
+                }
+            }
+            // console.log(sequence);
+            confirmWinner(sequence);
+
+            /* right diagonal */
+            sequence = "";
+            for (var i = 0; i < grid.length; i++) {
+                for (var j = 0; j < grid[i].length; j++) {
+                    if (i + j == grid[i].length - 1) {
+                        sequence += grid[i][j].value;
+                    }
+                }
+            }
+            // console.log(sequence);
+            confirmWinner(sequence);
+
+            /* rows */
+            sequence = "";
+            for (var i = 0; i < grid.length; i++) {
+                for (var j = 0; j < grid[i].length; j++) {
+                    sequence += grid[i][j].value;
+                }
+                // console.log(sequence);
+                confirmWinner(sequence);
+                sequence = "";
+            }
+
+            /* columns */
+            sequence = "";
+            for (var i = 0; i < grid.length; i++) {
+                for (var j = 0; j < grid[i].length; j++) {
+                    sequence += grid[j][i].value;
+                }
+                // console.log(sequence);
+                confirmWinner(sequence);
+                sequence = "";
+            }
+        }
+
+        function moveMade(the_btn) {
+            if (the_btn.classList.contains('played-btn')) {
+                return;
+            }
+
+            document.getElementById('game_log').style.visibility = 'visible';
+            document.getElementById('clear_all').disabled = false;
+
+            the_btn.style.color = 'black';
+            the_btn.classList.add('played-btn');
+
+            // console.log(the_btn);
+            // console.log(the_btn.classList);
+
+            console.log(the_btn.id);
+            var i = the_btn.id[0];
+            var j = the_btn.id[1];
+            console.log(i, j);
+
+            the_btn.value = whose_chance;
+            console.log(`${whose_chance} placed in ${i},${j}`);
+            var list_item = document.createElement('li');
+            list_item.appendChild(document.createTextNode(`${whose_chance} placed in ${i},${j}`));
+            document.getElementById('game_log_list').appendChild(list_item);
+            whose_chance == 'X' ? whose_chance = 'O' : whose_chance = 'X';
+
+            checkWinner();
+        }
+
+        function clearAll() {
+            whose_chance = 'X';
+
+            var playing_btns = document.getElementsByClassName('playing-button');
+            // console.log(playing_btns.length);
+            for (var i = 0; i < playing_btns.length; i++) {
+                playing_btns[i].disabled = false;
+                playing_btns[i].style.cursor = 'pointer';
+                playing_btns[i].value = 'P';
+                playing_btns[i].style.color = 'rgba(0,0,0,0)';
+                // console.log(playing_btns[i].classList);
+                playing_btns[i].classList.remove('played-btn');
+                // console.log(playing_btns[i].classList);
+            }
+
+            var gameLog = document.getElementById('game_log_list');
+            while (gameLog.firstChild)
+                gameLog.removeChild(gameLog.firstChild);
+            document.getElementById('game_log').style.visibility = 'hidden';
+
+            document.getElementById('clear_all').disabled = true;
+        }
+
+        function clearAllScores(){
+            var scoreLog = document.getElementById('winners_list');
+            while (scoreLog.firstChild)
+                scoreLog.removeChild(scoreLog.firstChild);
+        }
+    </script>
+</body>
+
+</html>
