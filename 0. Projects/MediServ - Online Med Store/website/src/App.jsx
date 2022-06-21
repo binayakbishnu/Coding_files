@@ -1,12 +1,6 @@
 import React from 'react';
 
-import {
-  BrowserRouter,
-  Routes,
-  Route,
-  // Link,
-  // Outlet
-} from "react-router-dom";
+import { Outlet } from "react-router-dom";
 
 import './App.css';
 
@@ -19,20 +13,26 @@ import Footer from './Footer';
 function App() {
   return (
     <div className="App">
-      <BrowserRouter>
+      {/* <BrowserRouter>
 
         <Nav />
 
-        {/* <Routes>
-          <Route path="/" element={<HomePage />} />
+        <Routes>
+          <Route exact path="/">
+            <HomePage />
+          </Route>
 
-          <Route path="/allprojects" element={<MoreProjects />} />
-
-        </Routes> */}
+          <Route exact path="/consultationForm">
+            <ConsultationForm />
+          </Route>
+        </Routes>
 
         <Footer />
 
-      </BrowserRouter>
+      </BrowserRouter> */}
+      <Nav />
+      <Outlet />
+      <Footer />
     </div>
   );
 }

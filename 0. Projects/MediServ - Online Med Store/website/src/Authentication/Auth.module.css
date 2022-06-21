@@ -1,5 +1,18 @@
-.navParent {
-    padding-top: 1%;
+.authParent {
+    background-color: rgb(0, 38, 95);
+    background-image: url('../assets/HomeBg.png');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    background-attachment: fixed;
+
+    margin: 0%;
+    padding: 0%;
+
+    min-height: 100vh;
+    
+    padding-top:1%;
+    padding-bottom: 2%;
 }
 
 .bStrapParent {
