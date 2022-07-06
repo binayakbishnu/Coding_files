@@ -1,0 +1,203 @@
+body {
+  margin: 0%;
+  padding: 0%;
+}
+
+p {
+  margin: 0%;
+  padding: 0%;
+}
+
+.flex-container {
+  width: auto;
+  height: auto;
+  padding: 0%;
+  background-color: white;
+  display: flex;
+  /* flex-direction:row; */
+  flex-direction: column;
+  /* flex-wrap: wrap; */
+  justify-content: stretch;
+  /* align-items: center; */
+  /* align-content: center; */
+}
+
+.flex-container .X {
+  /* grey area */
+  width: auto;
+  padding: 0%;
+  margin: 0%;
+  background-color: grey;
+  margin: 0%;
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+}
+
+.flex-container .Y {
+  /* grey area */
+  width: auto;
+  height: auto;
+  padding: 0%;
+  margin: 0%;
+  background-color: grey;
+  margin: 0%;
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+}
+
+.flex-container .A {
+  /* grey area */
+  width: 60%;
+  height: auto;
+  padding: 0.1%;
+  /* background-color: grey; */
+  margin: 0%;
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+  justify-content: center;
+  /* background-image: url("https://www.jaarvistech.com/wp-content/uploads/2017/01/jaarvistech-clent-logo-02.png"); */
+}
+
+.flex-container .B {
+  /* grey area */
+  width: 39.5%;
+  padding: 0.1%;
+  height: auto;
+  /* background-color: grey; */
+  margin: 0%;
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+  justify-content: center;
+}
+
+.flex-container .C {
+  /* grey area */
+  width: 100%;
+  height: auto;
+  padding: 0%;
+  /* background-color: grey; */
+  margin: 0%;
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+  justify-content: center;
+}
+
+.flex-container div {
+  padding: 2%;
+  margin: 0.5%;
+}
+
+.Edurev {
+  width: 58%;
+  background-color: white;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.Edurev p {
+  width: 66.67%;
+}
+
+.Backed {
+  width: 32.0%;
+  background-color: orange;
+}
+
+.Backed p {
+  color: white;
+  /* width:50%; */
+}
+
+.Backed p .img {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.img {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.Logon {
+  width: 48%;
+  background-color: lightblue;
+}
+
+.Logon p {
+  width: 55%;
+  margin-bottom: 8%;
+}
+
+.loved {
+  width: 42%;
+  background-color: rgb(147, 97, 204);
+  display: flex;
+  justify-content: flex-start;
+}
+
+.loved p {
+  color: white;
+  width: 60%;
+}
+
+.best {
+  display: flex;
+  justify-content: right;
+  width: 100%;
+  background-color: rgb(255, 99, 71);
+  align-items: flex-end;
+  justify-content: flex-end;
+}
+
+.best p {
+  color: white;
+  width: 50%;
+  margin: 2%;
+}
+
+.Edurev2 {
+  width: 100%;
+  background-color: white;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+.Edurev2 p {
+  width: 50%;
+}
+
+.thank {
+  width: 30%;
+  background-color: white;
+}
+
+.Edurev3 {
+  width: 33%;
+  background-color: white;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.Edurev3 p {
+  width: 60%;
+}
+
+.fastest {
+  width: 22.0%;
+  background-color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: lightblue;
+}
+
+.fastest p {
+  width: 65%;
+  text-align: justify;
+}
