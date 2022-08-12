@@ -23,3 +23,8 @@ yarn-debug.log*
 yarn-error.log*
 
 .env
+dbConfig.js
+
+/.firebase
+.firebaserc
+firebase.json
