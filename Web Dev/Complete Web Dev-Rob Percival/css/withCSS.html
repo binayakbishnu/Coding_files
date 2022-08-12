@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Webpage with Style</title>
+
+    <style type="text/css">
+        p {
+            color: rgb(5, 148, 17);
+            font-size: 200%;
+        }
+
+        h1 {
+            color: rgb(238, 91, 115);
+        }
+
+        .red {
+            color: red;
+        }
+
+        .xl {
+            font-size: 300%;
+        }
+
+        #green {
+            color: greenyellow;
+        }
+
+        #underline {
+            text-decoration: underline;
+        }
+
+        .abc {
+            width: 200px;
+            background-color: blue;
+            color: orange;
+        }
+
+        #float-1 {
+            color: blue;
+            background-color: green;
+            width: 300px;
+            /*float:right*/
+            float: left;
+            /*this putsit above float-2
+            without any gap*/
+        }
+
+        #float-2 {
+            color: red;
+            background-color: black;
+            width: 300px;
+            /*float: left;*/
+            /*this puts it to right of 
+            float-1 since both are float:left*/
+            float: right;
+        }
+
+        .clear {
+            clear: both;
+        }
+
+        #position-1 {
+            color: blue;
+            background-color: green;
+            width: 300px;
+            position: relative;
+            left: 200px;
+            /*left: -100px;*/
+            /*top: 300px;  /*by default is on top
+            overlapping can be set to custom by z-index*/
+            /*set opacity for overlapping 0 to 1*/
+            /*top: 200px;
+            z-index: 1;*/
+            /*absolute positioning pops it 
+            out of normal order*/
+            /*fixed positioning also pops out 
+            but prevents it from been scrolled away*/
+        }
+
+        #position-2 {
+            color: red;
+            background-color: black;
+            width: 300px;
+            /*position: relative;
+            z-index:2;
+            opacity:0.75;*/
+        }
+    </style>
+
+</head>
+
+<body>
+
+    <!--p style="color:blue;font-size:200%"-->
+    <h1>Hello there</h1>
+    <p class="red">
+        The quick brown fox jumped over the lazy dog
+    </p>
+    <p>
+        All alphabets in one sentence
+    </p>
+    <p>Unique</p>
+    <h1 class="red">Hello</h1>
+    <p class="red xl">Combo</p>
+    <p id="green">IDs</p>
+    <!--ids can be used only once unlike classes-->
+    <!--span can be used to enclose any part to apply css-->
+    <p>Hello! <span class="red" id="underline">and Welcome!</span></p>
+    <p class="abc">
+        The quick brown fox jumped over the lazy dog
+    </p>
+
+    <!--Colours-->
+    <!--Hex codes-->
+
+    <!--Floating-->
+    <p id="float-1">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore
+        et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
+        commodo consequat.</p>
+    <p id="float-2">Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
+        pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est
+        laborum.</p>
+    <p class="clear"></p>
+    <p>No floating in this</p>
+    <hr>
+    <!--Positioning-->
+    <p id="position-1">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
+        labore
+        et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
+        commodo consequat.</p>
+    <p id="position-2">Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
+        pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est
+        laborum.</p>
+    <p class="clear"></p>
+    <p>No floating in this</p>
+
+
+</body>
+
+</html>

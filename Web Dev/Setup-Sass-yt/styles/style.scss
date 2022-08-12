@@ -1,0 +1,25 @@
+$primaryBtn: rgb(9, 158, 163);
+// allows variables
+
+header {
+    background: lightblue;
+    display: flex;
+    justify-content: center;
+    h1{
+        background-color: green;
+    }
+}
+
+// header button {
+//     background-color: red;
+// }
+// .contact button {
+//     background-color: red;
+// }
+
+header button {
+    background-color: $primaryBtn;
+}
+.contact button {
+    background-color: $primaryBtn;
+}
