@@ -50,7 +50,7 @@
         }
 
         #alphabets {
-            background-color: red;
+            /* background-color: red; */
 
             width: auto;
             display: flex;
@@ -79,6 +79,7 @@
 
         <input type="text" id="guess_input" placeholder="Put your guess here" title="Put your guess here" />
         <input type="button" id="guess_submit" value="Submit" />
+        <input type="button" id="clear" value="Clear" />
 
         <section id="result">
             <div style="margin-right:5%">
@@ -90,36 +91,56 @@
         </section>
 
         <section id="alphabets">
-
-            <button class="alphabet">a</button><button class="alphabet">b</button><button
-                class="alphabet">c</button><button class="alphabet">d</button><button class="alphabet">e</button><button
-                class="alphabet">f</button><button class="alphabet">g</button><button class="alphabet">h</button><button
-                class="alphabet">i</button><button class="alphabet">j</button><button class="alphabet">k</button><button
-                class="alphabet">l</button><button class="alphabet">m</button><button class="alphabet">n</button><button
-                class="alphabet">o</button><button class="alphabet">p</button><button class="alphabet">q</button><button
-                class="alphabet">r</button><button class="alphabet">s</button><button class="alphabet">t</button><button
-                class="alphabet">u</button><button class="alphabet">v</button><button class="alphabet">w</button><button
-                class="alphabet">x</button><button class="alphabet">y</button><button class="alphabet">z</button>
-
+            <button class="alphabet" id="a" value="a" onclick="btnClick(this)">a</button>
+            <button class="alphabet" id="b" value="b" onclick="btnClick(this)">b</button>
+            <button class="alphabet" id="c" value="c" onclick="btnClick(this)">c</button>
+            <button class="alphabet" id="d" value="d" onclick="btnClick(this)">d</button>
+            <button class="alphabet" id="e" value="e" onclick="btnClick(this)">e</button>
+            <button class="alphabet" id="f" value="f" onclick="btnClick(this)">f</button>
+            <button class="alphabet" id="g" value="g" onclick="btnClick(this)">g</button>
+            <button class="alphabet" id="h" value="h" onclick="btnClick(this)">h</button>
+            <button class="alphabet" id="i" value="i" onclick="btnClick(this)">i</button>
+            <button class="alphabet" id="j" value="j" onclick="btnClick(this)">j</button>
+            <button class="alphabet" id="k" value="k" onclick="btnClick(this)">k</button>
+            <button class="alphabet" id="l" value="l" onclick="btnClick(this)">l</button>
+            <button class="alphabet" id="m" value="m" onclick="btnClick(this)">m</button>
+            <button class="alphabet" id="n" value="n" onclick="btnClick(this)">n</button>
+            <button class="alphabet" id="o" value="o" onclick="btnClick(this)">o</button>
+            <button class="alphabet" id="p" value="p" onclick="btnClick(this)">p</button>
+            <button class="alphabet" id="q" value="q" onclick="btnClick(this)">q</button>
+            <button class="alphabet" id="r" value="r" onclick="btnClick(this)">r</button>
+            <button class="alphabet" id="s" value="s" onclick="btnClick(this)">s</button>
+            <button class="alphabet" id="t" value="t" onclick="btnClick(this)">t</button>
+            <button class="alphabet" id="u" value="u" onclick="btnClick(this)">u</button>
+            <button class="alphabet" id="v" value="v" onclick="btnClick(this)">v</button>
+            <button class="alphabet" id="w" value="w" onclick="btnClick(this)">w</button>
+            <button class="alphabet" id="x" value="x" onclick="btnClick(this)">x</button>
+            <button class="alphabet" id="y" value="y" onclick="btnClick(this)">y</button>
+            <button class="alphabet" id="z" value="z" onclick="btnClick(this)">z</button>
         </section>
+
+        <h1 id="reloading" style="display: none; font-style: italic;">Reloading...</h1>
     </div>
 
-    <script type="module">
-        import wordList from './mastermind_words.json' assert {type: 'json'};
+    <script>
+        // import wordList from './mastermind_words.json' assert {type: 'json'};
+
+        var wordList = {
+            "four_letter": [
+                "etch",
+                "bike",
+                "knob",
+                "mask",
+            ]
+        }
 
         console.log(wordList);
         console.log(wordList.four_letter);
-        console.log(wordList.four_letter[0], wordList.four_letter[1], wordList.four_letter[2]);
 
-        /* 0 to 2 */
-        var rand = Math.floor(0 + Math.random() * 3);
+        /* 0 to length-1 */
+        var rand = Math.floor(0 + Math.random() * wordList.four_letter.length);
         console.log(rand);
-
         var word = wordList.four_letter[rand];
-
-        // for (var i = 0; i < word.length; i++) {
-        //     document.getElementById(`letter${i + 1}`).innerHTML = word[i].toUpperCase();
-        // }
 
         // document.getElementById("presence_list").innerHTML = null;
         var presenceList = document.getElementById('presence_list');
@@ -131,13 +152,12 @@
             correctList.removeChild(correctList.firstChild);
 
         document.getElementById("guess_submit").onclick = function guessTrigger() {
+            var presenceList = document.getElementById('presence_list');
+            var correctList = document.getElementById('correct_place_list');
+
             var guessedWord = document.getElementById("guess_input").value;
             console.log("word", word);
             console.log("guessed", guessedWord);
-
-            if (word.match(guessedWord)) {
-                console.log("Matched");
-            }
 
             /* check for presence then place */
             for (var i = 0; i < guessedWord.length; i++) {
@@ -151,11 +171,44 @@
                         var listItem2 = document.createElement('li');
                         listItem2.appendChild(document.createTextNode(`${guessedWord[i]} in correct place`));
                         correctList.appendChild(listItem2);
+                        document.getElementById(`letter${i + 1}`).innerText = guessedWord[i];
+                        document.getElementById(`letter${i + 1}`).style.color = "black";
+                        document.getElementById(`${guessedWord[i]}`).style.backgroundColor = "green";
                     }
+                    else {
+                        document.getElementById(`${guessedWord[i]}`).style.backgroundColor = "orange";
+                    }
+                }
+                else {
+                    document.getElementById(`${guessedWord[i]}`).style.backgroundColor = "red";
                 }
             }
 
+            if (word.match(guessedWord)) {
+                // alert("Matched!");
+                var presenceList = document.getElementById('presence_list');
+                while (presenceList.firstChild)
+                    presenceList.removeChild(presenceList.firstChild);
+                var correctList = document.getElementById('correct_place_list');
+                while (correctList.firstChild)
+                    correctList.removeChild(correctList.firstChild);
+                document.getElementById('guess_input').value = '';
+
+                document.getElementById('reloading').style.display = 'block';
+                setTimeout(function () { location.reload(); }, 3000);
+                return;
+            }
+
             document.getElementById('guess_input').focus();
+        }
+
+        function btnClick(event) {
+            console.log(event.value);
+            document.getElementById('guess_input').value += event.value;
+        }
+
+        document.getElementById('clear').onclick = function () {
+            document.getElementById('guess_input').value = '';
         }
     </script>
 </body>
